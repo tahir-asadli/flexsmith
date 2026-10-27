@@ -3,7 +3,7 @@
  * Plugin Name:       Flexsmith
  * Description:       Flexsmith is Gutenberg block designed to enhance the WordPress block editor.
  * Version:           1.0.0
- * Requires at least: 6.9
+ * Requires at least: 6.8
  * Requires PHP:      8.3
  * Author:            Tahir Asadli
  * Author URI:        https://tahir-asadli.github.io
@@ -33,24 +33,3 @@ function flexsmith_block_init()
 	wp_register_block_types_from_metadata_collection(__DIR__ . '/build', __DIR__ . '/build/blocks-manifest.php');
 }
 add_action('init', 'flexsmith_block_init');
-
-
-add_action('enqueue_block_editor_assets', function () {
-	global $wp_version;
-
-	wp_enqueue_script(
-		'flexsmith',
-		plugin_dir_url(__FILE__) . 'build/flexbox/index.js',
-		array('wp-blocks', 'wp-element', 'wp-editor'),
-		'1.0.0',
-		true
-	);
-
-	wp_localize_script(
-		'flexsmith',
-		'flexsmith',
-		array(
-			'wpVersion' => $wp_version,
-		)
-	);
-});

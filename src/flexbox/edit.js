@@ -52,12 +52,8 @@ export default function Edit(props) {
 		}
 	});
 	const innerBlocksProps = useInnerBlocksProps(blockProps);
-	const wpVersion = flexsmith?.wpVersion && !isNaN(flexsmith.wpVersion) ? Number(flexsmith.wpVersion) : 6;
-
-	const inspectorControlsGroup = wpVersion > 7 ? "viewport" : "settings"
-
 	return <>
-		<InspectorControls group={deviceType == "Desktop" ? "settings" : inspectorControlsGroup}>
+		<InspectorControls group="settings">
 			<PanelBody title={__('Flexbox settings', 'flexsmith')}>
 				{deviceType == "Desktop" ? <DesktopSettings setAttributes={setAttributes} attributes={props.attributes} /> : deviceType == "Tablet" ? <TabletSettings setAttributes={setAttributes} attributes={props.attributes} /> : <MobileSettings setAttributes={setAttributes} attributes={props.attributes} />}
 			</PanelBody>

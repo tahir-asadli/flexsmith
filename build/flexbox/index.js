@@ -103,11 +103,9 @@ function Edit(props) {
     }
   });
   const innerBlocksProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useInnerBlocksProps)(blockProps);
-  const wpVersion = flexsmith?.wpVersion && !isNaN(flexsmith.wpVersion) ? Number(flexsmith.wpVersion) : 6;
-  const inspectorControlsGroup = wpVersion > 7 ? "viewport" : "settings";
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
     children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.InspectorControls, {
-      group: deviceType == "Desktop" ? "settings" : inspectorControlsGroup,
+      group: "settings",
       children: /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.PanelBody, {
         title: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Flexbox settings', 'flexsmith'),
         children: deviceType == "Desktop" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(DesktopSettings, {
