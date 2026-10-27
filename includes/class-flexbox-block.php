@@ -5,7 +5,7 @@
  * @package flexsmith
  */
 
-namespace BoxWise;
+namespace Flexsmith;
 
 
 if (!defined('ABSPATH')) {
@@ -112,7 +112,7 @@ final class Flexbox_Block
 			}
 		}
 		if (!empty($css)) {
-			wp_register_style('flexsmith', false);
+			wp_register_style('flexsmith', false, [], '0.1.1');
 			wp_enqueue_style('flexsmith');
 			wp_add_inline_style(
 				'flexsmith',

@@ -10,7 +10,7 @@
 if (!defined('ABSPATH')) {
 	exit;
 }
-$flexsmith = new \BoxWise\Flexbox_Block($attributes);
+$flexsmith = new \Flexsmith\Flexbox_Block($attributes);
 
 ?>
 <?php // phpcs:ignore WordPress.Security.EscapeOutput.OutputNotEscaped ?>
