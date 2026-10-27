@@ -1,0 +1,250 @@
+/*!************************************************************************************************************************************************************************************************************************************************!*\
+  !*** css ./node_modules/css-loader/dist/cjs.js??ruleSet[1].rules[4].use[1]!./node_modules/postcss-loader/dist/cjs.js??ruleSet[1].rules[4].use[2]!./node_modules/sass-loader/dist/cjs.js??ruleSet[1].rules[4].use[3]!./src/flexbox/editor.scss ***!
+  \************************************************************************************************************************************************************************************************************************************************/
+/**
+ * The following styles get applied inside the editor only.
+ *
+ * Replace them with your own styles or remove the file completely.
+ */
+.taufb {
+  border: 1px dotted #ccc;
+  padding: 0.5rem;
+  display: flex;
+}
+
+.taufb--justify-flex-start {
+  justify-content: flex-start;
+}
+
+.taufb--justify-flex-end {
+  justify-content: flex-end;
+}
+
+.taufb--justify-center {
+  justify-content: center;
+}
+
+.taufb--justify-space-between {
+  justify-content: space-between;
+}
+
+.taufb--justify-space-around {
+  justify-content: space-around;
+}
+
+.taufb--align-flex-start {
+  align-items: flex-start;
+}
+
+.taufb--align-flex-end {
+  align-items: flex-end;
+}
+
+.taufb--align-center {
+  align-items: center;
+}
+
+.taufb--align-baseline {
+  align-items: baseline;
+}
+
+.taufb--align-stretch {
+  align-items: stretch;
+}
+
+.taufb--direction-row {
+  flex-direction: row;
+}
+
+.taufb--direction-column {
+  flex-direction: column;
+}
+
+.taufb--direction-row-reverse {
+  flex-direction: row-reverse;
+}
+
+.taufb--direction-column-reverse {
+  flex-direction: column-reverse;
+}
+
+.taufb--wrap-wrap {
+  flex-wrap: wrap;
+}
+
+.taufb--wrap-nowrap {
+  flex-wrap: nowrap;
+}
+
+.taufb--display-none {
+  opacity: 0.5;
+}
+
+.taufb--display-flex {
+  display: flex;
+}
+
+.taufb--display-inline-flex {
+  display: inline-flex;
+}
+
+.taufb--grow-on {
+  flex-grow: 1;
+}
+
+.taufb--grow-off {
+  flex-grow: 0;
+}
+
+.taufb--shrink-on {
+  flex-shrink: 1;
+}
+
+.taufb--shrink-off {
+  flex-shrink: 0;
+}
+
+@media (480px < width <= 782px) {
+  .taufb--justify-tablet-flex-start {
+    justify-content: flex-start;
+  }
+  .taufb--justify-tablet-flex-end {
+    justify-content: flex-end;
+  }
+  .taufb--justify-tablet-center {
+    justify-content: center;
+  }
+  .taufb--justify-tablet-space-between {
+    justify-content: space-between;
+  }
+  .taufb--justify-tablet-space-around {
+    justify-content: space-around;
+  }
+  .taufb--align-tablet-flex-start {
+    align-items: flex-start;
+  }
+  .taufb--align-tablet-flex-end {
+    align-items: flex-end;
+  }
+  .taufb--align-tablet-center {
+    align-items: center;
+  }
+  .taufb--align-tablet-baseline {
+    align-items: baseline;
+  }
+  .taufb--align-tablet-stretch {
+    align-items: stretch;
+  }
+  .taufb--direction-tablet-row {
+    flex-direction: row;
+  }
+  .taufb--direction-tablet-column {
+    flex-direction: column;
+  }
+  .taufb--direction-tablet-row-reverse {
+    flex-direction: row-reverse;
+  }
+  .taufb--direction-tablet-column-reverse {
+    flex-direction: column-reverse;
+  }
+  .taufb--wrap-tablet-wrap {
+    flex-wrap: wrap;
+  }
+  .taufb--wrap-tablet-nowrap {
+    flex-wrap: nowrap;
+  }
+  .taufb--display-tablet-none {
+    opacity: 0.5;
+  }
+  .taufb--display-tablet-flex {
+    opacity: 1;
+    display: flex;
+  }
+  .taufb--display-tablet-inline-flex {
+    display: inline-flex;
+  }
+  .taufb--grow-tablet-on {
+    flex-grow: 1;
+  }
+  .taufb--grow-tablet-off {
+    flex-grow: 0;
+  }
+  .taufb--shrink-tablet-on {
+    flex-shrink: 1;
+  }
+  .taufb--shrink-tablet-off {
+    flex-shrink: 0;
+  }
+}
+@media (width <= 480px) {
+  .taufb--justify-mobile-flex-start {
+    justify-content: flex-start;
+  }
+  .taufb--justify-mobile-flex-end {
+    justify-content: flex-end;
+  }
+  .taufb--justify-mobile-center {
+    justify-content: center;
+  }
+  .taufb--justify-mobile-space-between {
+    justify-content: space-between;
+  }
+  .taufb--justify-mobile-space-around {
+    justify-content: space-around;
+  }
+  .taufb--align-mobile-flex-start {
+    align-items: flex-start;
+  }
+  .taufb--align-mobile-flex-end {
+    align-items: flex-end;
+  }
+  .taufb--align-mobile-center {
+    align-items: center;
+  }
+  .taufb--align-mobile-baseline {
+    align-items: baseline;
+  }
+  .taufb--align-mobile-stretch {
+    align-items: stretch;
+  }
+  .taufb--direction-mobile-row {
+    flex-direction: row;
+  }
+  .taufb--direction-mobile-column {
+    flex-direction: column;
+  }
+  .taufb--direction-mobile-row-reverse {
+    flex-direction: row-reverse;
+  }
+  .taufb--direction-mobile-column-reverse {
+    flex-direction: column-reverse;
+  }
+  .taufb--wrap-mobile-wrap {
+    flex-wrap: wrap;
+  }
+  .taufb--wrap-mobile-nowrap {
+    flex-wrap: nowrap;
+  }
+  .taufb--display-mobile-none {
+    opacity: 0.5;
+  }
+  .taufb--display-mobile-flex {
+    display: flex;
+    opacity: 1;
+  }
+  .taufb--display-mobile-inline-flex {
+    display: inline-flex;
+  }
+  .taufb--grow-mobile-on {
+    flex-grow: 1;
+  }
+  .taufb--grow-mobile-off {
+    flex-grow: 0;
+  }
+  .taufb--shrink-mobile-on {
+    flex-shrink: 1;
+  }
+  .taufb--shrink-mobile-off {
+    flex-shrink: 0;
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "$schema": "https://schemas.wp.org/trunk/block.json",
+  "apiVersion": 3,
+  "name": "flexsmith/flexsmith",
+  "version": "0.1.0",
+  "title": "Flexsmith",
+  "category": "widgets",
+  "icon": "smiley",
+  "description": "Flexsmith is Gutenberg block designed to enhance the WordPress block editor.",
+  "example": {},
+  "supports": {
+    "html": false,
+    "color": {
+      "background": true,
+      "text": true
+    },
+    "typography": {
+      "fontSize": true,
+      "lineHeight": true,
+      "textAlign": true
+    },
+    "background": {
+      "backgroundImage": true,
+      "backgroundSize": true
+    },
+    "shadow": true,
+    "align": [
+      "wide",
+      "full"
+    ],
+    "spacing": {
+      "margin": true,
+      "padding": true
+    },
+    "__experimentalBorder": {
+      "radius": true,
+      "color": false,
+      "width": false,
+      "style": false
+    }
+  },
+  "attributes": {
+    "justifyContent": {
+      "type": "string",
+      "default": ""
+    },
+    "tabletJustifyContent": {
+      "type": "string",
+      "default": ""
+    },
+    "mobileJustifyContent": {
+      "type": "string",
+      "default": ""
+    },
+    "alignItems": {
+      "type": "string",
+      "default": ""
+    },
+    "tabletAlignItems": {
+      "type": "string",
+      "default": ""
+    },
+    "mobileAlignItems": {
+      "type": "string",
+      "default": ""
+    },
+    "direction": {
+      "type": "string",
+      "default": ""
+    },
+    "tabletDirection": {
+      "type": "string",
+      "default": ""
+    },
+    "mobileDirection": {
+      "type": "string",
+      "default": ""
+    },
+    "wrap": {
+      "type": "string",
+      "default": ""
+    },
+    "tabletWrap": {
+      "type": "string",
+      "default": ""
+    },
+    "mobileWrap": {
+      "type": "string",
+      "default": ""
+    },
+    "width": {
+      "type": "string",
+      "default": ""
+    },
+    "tabletWidth": {
+      "type": "string",
+      "default": ""
+    },
+    "mobileWidth": {
+      "type": "string",
+      "default": ""
+    },
+    "display": {
+      "type": "string",
+      "default": ""
+    },
+    "tabletDisplay": {
+      "type": "string",
+      "default": ""
+    },
+    "mobileDisplay": {
+      "type": "string",
+      "default": ""
+    },
+    "grow": {
+      "type": "string",
+      "default": ""
+    },
+    "tabletGrow": {
+      "type": "string",
+      "default": ""
+    },
+    "mobileGrow": {
+      "type": "string",
+      "default": ""
+    },
+    "shrink": {
+      "type": "string",
+      "default": ""
+    },
+    "tabletShrink": {
+      "type": "string",
+      "default": ""
+    },
+    "mobileShrink": {
+      "type": "string",
+      "default": ""
+    },
+    "columnGap": {
+      "type": "string",
+      "default": ""
+    },
+    "tabletColumnGap": {
+      "type": "string",
+      "default": ""
+    },
+    "mobileColumnGap": {
+      "type": "string",
+      "default": ""
+    },
+    "rowGap": {
+      "type": "string",
+      "default": ""
+    },
+    "tabletRowGap": {
+      "type": "string",
+      "default": ""
+    },
+    "mobileRowGap": {
+      "type": "string",
+      "default": ""
+    }
+  },
+  "textdomain": "flexsmith",
+  "editorScript": "file:./index.js",
+  "editorStyle": "file:./index.css",
+  "style": "file:./style-index.css",
+  "render": "file:./render.php"
+}
