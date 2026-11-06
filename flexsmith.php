@@ -2,7 +2,7 @@
 /**
  * Plugin Name:       Flexsmith
  * Description:       Flexsmith is Gutenberg block designed to enhance the WordPress block editor.
- * Version:           1.0.0
+ * Version:           1.1.0
  * Requires at least: 6.8
  * Requires PHP:      8.3
  * Author:            Tahir Asadli
