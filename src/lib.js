@@ -94,6 +94,46 @@ export const getRowGap = (deviceType, attributes) => {
   }
 }
 
+export const getTop = (deviceType, attributes) => {
+  if (deviceType == "Desktop") {
+    return attributes.top ? attributes.top : undefined
+  } else if (deviceType == "Tablet") {
+    return attributes.tabletTop ? attributes.tabletTop : undefined
+  } else {
+    return attributes.mobileTop ? attributes.mobileTop : undefined
+  }
+}
+
+export const getRight = (deviceType, attributes) => {
+  if (deviceType == "Desktop") {
+    return attributes.right ? attributes.right : undefined
+  } else if (deviceType == "Tablet") {
+    return attributes.tabletRight ? attributes.tabletRight : undefined
+  } else {
+    return attributes.mobileRight ? attributes.mobileRight : undefined
+  }
+}
+
+export const getBottom = (deviceType, attributes) => {
+  if (deviceType == "Desktop") {
+    return attributes.bottom ? attributes.bottom : undefined
+  } else if (deviceType == "Tablet") {
+    return attributes.tabletBottom ? attributes.tabletBottom : undefined
+  } else {
+    return attributes.mobileBottom ? attributes.mobileBottom : undefined
+  }
+}
+
+export const getLeft = (deviceType, attributes) => {
+  if (deviceType == "Desktop") {
+    return attributes.left ? attributes.left : undefined
+  } else if (deviceType == "Tablet") {
+    return attributes.tabletLeft ? attributes.tabletLeft : undefined
+  } else {
+    return attributes.mobileLeft ? attributes.mobileLeft : undefined
+  }
+}
+
 const CLASS_PROPS = [
   ['justify', 'justifyContent'],
   ['align', 'alignItems'],
@@ -102,6 +142,7 @@ const CLASS_PROPS = [
   ['display', 'display'],
   ['grow', 'grow'],
   ['shrink', 'shrink'],
+  ['position', 'position']
 ];
 
 const DEVICES = ['', 'tablet', 'mobile'];

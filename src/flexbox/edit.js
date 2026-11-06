@@ -22,7 +22,8 @@ import {
 	PanelBody, __experimentalToggleGroupControl as ToggleGroupControl,
 	__experimentalToggleGroupControlOption as ToggleGroupControlOption,
 	__experimentalToggleGroupControlOptionIcon as ToggleGroupControlOptionIcon,
-	__experimentalUnitControl as UnitControl
+	__experimentalUnitControl as UnitControl,
+	SelectControl
 } from '@wordpress/components';
 
 /**
@@ -34,7 +35,7 @@ import {
  * @return {Element} Element to render.
  */
 
-import { classNames, getColumnGap, getRowGap, getWidth, ICONS, useDeviceType } from '../lib';
+import { classNames, getColumnGap, getRowGap, getWidth, getTop, getRight, getBottom, getLeft, ICONS, useDeviceType } from '../lib';
 
 
 export default function Edit(props) {
@@ -48,7 +49,11 @@ export default function Edit(props) {
 		style: {
 			width: getWidth(deviceType, props.attributes),
 			columnGap: getColumnGap(deviceType, props.attributes),
-			rowGap: getRowGap(deviceType, props.attributes)
+			rowGap: getRowGap(deviceType, props.attributes),
+			top: getTop(deviceType, props.attributes),
+			right: getRight(deviceType, props.attributes),
+			bottom: getBottom(deviceType, props.attributes),
+			left: getLeft(deviceType, props.attributes),
 		}
 	});
 	const innerBlocksProps = useInnerBlocksProps(blockProps);
@@ -65,6 +70,7 @@ export default function Edit(props) {
 
 const DesktopSettings = ({ setAttributes, attributes }) => {
 	return <>
+		<SettingPosition setAttributes={setAttributes} attributes={attributes} device={"Desktop"} />
 		<SettingDisplay setAttributes={setAttributes} attributes={attributes} device={"Desktop"} />
 		<SettingWidth setAttributes={setAttributes} attributes={attributes} device={"Desktop"} />
 		<SettingJustifyContent setAttributes={setAttributes} attributes={attributes} device={"Desktop"} />
@@ -79,6 +85,7 @@ const DesktopSettings = ({ setAttributes, attributes }) => {
 }
 const TabletSettings = ({ setAttributes, attributes }) => {
 	return <>
+		<SettingPosition setAttributes={setAttributes} attributes={attributes} device={"Tablet"} />
 		<SettingDisplay setAttributes={setAttributes} attributes={attributes} device={"Tablet"} />
 		<SettingWidth setAttributes={setAttributes} attributes={attributes} device={"Tablet"} />
 		<SettingJustifyContent setAttributes={setAttributes} attributes={attributes} device={"Tablet"} />
@@ -93,6 +100,7 @@ const TabletSettings = ({ setAttributes, attributes }) => {
 }
 const MobileSettings = ({ setAttributes, attributes }) => {
 	return <>
+		<SettingPosition setAttributes={setAttributes} attributes={attributes} device={"Mobile"} />
 		<SettingDisplay setAttributes={setAttributes} attributes={attributes} device={"Mobile"} />
 		<SettingWidth setAttributes={setAttributes} attributes={attributes} device={"Mobile"} />
 		<SettingJustifyContent setAttributes={setAttributes} attributes={attributes} device={"Mobile"} />
@@ -424,4 +432,416 @@ const SettingRowGap = ({ setAttributes, attributes, device }) => {
 				{ value: 'vh', label: 'vh', default: 0 },
 			]}
 		/></>
+}
+const SettingPosition = ({ setAttributes, attributes, device }) => {
+	const options = [
+		{ label: __('Not set', 'flexsmith'), value: '' },
+		{ label: __('Static', 'flexsmith'), value: 'static' },
+		{ label: __('Relative', 'flexsmith'), value: 'relative' },
+		{ label: __('Absolute', 'flexsmith'), value: 'absolute' },
+		{ label: __('Fixed', 'flexsmith'), value: 'fixed' },
+		{ label: __('Sticky', 'flexsmith'), value: 'sticky' },
+	];
+	return <>
+		<SelectControl
+			label={__('Position', 'flexsmith')}
+			value={device == "Desktop" ? attributes.position : device == "Tablet" ? attributes.tabletPosition : attributes.mobilePosition}
+			options={options}
+			onChange={(value) => {
+				if (device == "Desktop") {
+					setAttributes({ position: value })
+				} else if (device == "Tablet") {
+					setAttributes({ tabletPosition: value })
+				} else {
+					setAttributes({ mobilePosition: value })
+				}
+			}}
+		/>
+		{attributes.position != '' && attributes.position != 'static' && device == "Desktop" ? <SettingPositions setAttributes={setAttributes} attributes={attributes} device={"Desktop"} />
+			: null}
+		{attributes.tabletPosition != '' && attributes.tabletPosition != 'static' && device == "Tablet" ? <SettingPositions setAttributes={setAttributes} attributes={attributes} device={"Tablet"} />
+			: null}
+		{attributes.mobilePosition != '' && attributes.mobilePosition != 'static' && device == "Mobile" ? <SettingPositions setAttributes={setAttributes} attributes={attributes} device={"Mobile"} />
+			: null}
+
+		{/* {attributes.position != '' && attributes.position != 'static' && device == "Desktop" ? <>
+			<div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", columnGap: "20px" }}>
+				<UnitControl
+					label={__('Top', "flexsmith")}
+					placeholder={__('Top', "flexsmith")}
+					value={device == "Desktop" ? attributes.top : device == "Tablet" ? attributes.tabletTop : attributes.mobileTop}
+					onChange={(value) => {
+						if (device == "Desktop") {
+							setAttributes({ top: value })
+						} else if (device == "Tablet") {
+							setAttributes({ tabletTop: value })
+						} else {
+							setAttributes({ mobileTop: value })
+						}
+					}}
+					units={[
+						{ value: 'px', label: 'px', default: 0 },
+						{ value: 'em', label: 'em', default: 0 },
+						{ value: 'rem', label: 'rem', default: 0 },
+						{ value: '%', label: '%', default: 0 },
+						{ value: 'vh', label: 'vh', default: 0 },
+					]}
+				/>
+				<UnitControl
+					label={__('Right', "flexsmith")}
+					placeholder={__('Right', "flexsmith")}
+					value={device == "Desktop" ? attributes.right : device == "Tablet" ? attributes.tabletRight : attributes.mobileRight}
+					onChange={(value) => {
+						if (device == "Desktop") {
+							setAttributes({ right: value })
+						} else if (device == "Tablet") {
+							setAttributes({ tabletRight: value })
+						} else {
+							setAttributes({ mobileRight: value })
+						}
+					}}
+					units={[
+						{ value: 'px', label: 'px', default: 0 },
+						{ value: 'em', label: 'em', default: 0 },
+						{ value: 'rem', label: 'rem', default: 0 },
+						{ value: '%', label: '%', default: 0 },
+						{ value: 'vh', label: 'vh', default: 0 },
+					]}
+				/>
+				<UnitControl
+					label={__('Left', "flexsmith")}
+					placeholder={__('Left', "flexsmith")}
+					value={device == "Desktop" ? attributes.left : device == "Tablet" ? attributes.tabletLeft : attributes.mobileLeft}
+					onChange={(value) => {
+						if (device == "Desktop") {
+							setAttributes({ left: value })
+						} else if (device == "Tablet") {
+							setAttributes({ tabletLeft: value })
+						} else {
+							setAttributes({ mobileLeft: value })
+						}
+					}}
+					units={[
+						{ value: 'px', label: 'px', default: 0 },
+						{ value: 'em', label: 'em', default: 0 },
+						{ value: 'rem', label: 'rem', default: 0 },
+						{ value: '%', label: '%', default: 0 },
+						{ value: 'vh', label: 'vh', default: 0 },
+					]}
+				/>
+				<UnitControl
+					label={__('Bottom', "flexsmith")}
+					placeholder={__('Bottom', "flexsmith")}
+					value={device == "Desktop" ? attributes.bottom : device == "Tablet" ? attributes.tabletBottom : attributes.mobileBottom}
+					onChange={(value) => {
+						if (device == "Desktop") {
+							setAttributes({ bottom: value })
+						} else if (device == "Tablet") {
+							setAttributes({ tabletBottom: value })
+						} else {
+							setAttributes({ mobileBottom: value })
+						}
+					}}
+					units={[
+						{ value: 'px', label: 'px', default: 0 },
+						{ value: 'em', label: 'em', default: 0 },
+						{ value: 'rem', label: 'rem', default: 0 },
+						{ value: '%', label: '%', default: 0 },
+						{ value: 'vh', label: 'vh', default: 0 },
+					]}
+				/>
+			</div>
+		</> : null}
+		{attributes.tabletPosition != '' && attributes.tabletPosition != 'static' && device == "Tablet" ? <>
+			<div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", columnGap: "20px" }}>
+				<UnitControl
+					label={__('Top', "flexsmith")}
+					placeholder={__('Top', "flexsmith")}
+					value={device == "Desktop" ? attributes.top : device == "Tablet" ? attributes.tabletTop : attributes.mobileTop}
+					onChange={(value) => {
+						if (device == "Desktop") {
+							setAttributes({ top: value })
+						} else if (device == "Tablet") {
+							setAttributes({ tabletTop: value })
+						} else {
+							setAttributes({ mobileTop: value })
+						}
+					}}
+					units={[
+						{ value: 'px', label: 'px', default: 0 },
+						{ value: 'em', label: 'em', default: 0 },
+						{ value: 'rem', label: 'rem', default: 0 },
+						{ value: '%', label: '%', default: 0 },
+						{ value: 'vh', label: 'vh', default: 0 },
+					]}
+				/>
+				<UnitControl
+					label={__('Right', "flexsmith")}
+					placeholder={__('Right', "flexsmith")}
+					value={device == "Desktop" ? attributes.right : device == "Tablet" ? attributes.tabletRight : attributes.mobileRight}
+					onChange={(value) => {
+						if (device == "Desktop") {
+							setAttributes({ right: value })
+						} else if (device == "Tablet") {
+							setAttributes({ tabletRight: value })
+						} else {
+							setAttributes({ mobileRight: value })
+						}
+					}}
+					units={[
+						{ value: 'px', label: 'px', default: 0 },
+						{ value: 'em', label: 'em', default: 0 },
+						{ value: 'rem', label: 'rem', default: 0 },
+						{ value: '%', label: '%', default: 0 },
+						{ value: 'vh', label: 'vh', default: 0 },
+					]}
+				/>
+				<UnitControl
+					label={__('Left', "flexsmith")}
+					placeholder={__('Left', "flexsmith")}
+					value={device == "Desktop" ? attributes.left : device == "Tablet" ? attributes.tabletLeft : attributes.mobileLeft}
+					onChange={(value) => {
+						if (device == "Desktop") {
+							setAttributes({ left: value })
+						} else if (device == "Tablet") {
+							setAttributes({ tabletLeft: value })
+						} else {
+							setAttributes({ mobileLeft: value })
+						}
+					}}
+					units={[
+						{ value: 'px', label: 'px', default: 0 },
+						{ value: 'em', label: 'em', default: 0 },
+						{ value: 'rem', label: 'rem', default: 0 },
+						{ value: '%', label: '%', default: 0 },
+						{ value: 'vh', label: 'vh', default: 0 },
+					]}
+				/>
+				<UnitControl
+					label={__('Bottom', "flexsmith")}
+					placeholder={__('Bottom', "flexsmith")}
+					value={device == "Desktop" ? attributes.bottom : device == "Tablet" ? attributes.tabletBottom : attributes.mobileBottom}
+					onChange={(value) => {
+						if (device == "Desktop") {
+							setAttributes({ bottom: value })
+						} else if (device == "Tablet") {
+							setAttributes({ tabletBottom: value })
+						} else {
+							setAttributes({ mobileBottom: value })
+						}
+					}}
+					units={[
+						{ value: 'px', label: 'px', default: 0 },
+						{ value: 'em', label: 'em', default: 0 },
+						{ value: 'rem', label: 'rem', default: 0 },
+						{ value: '%', label: '%', default: 0 },
+						{ value: 'vh', label: 'vh', default: 0 },
+					]}
+				/>
+			</div>
+		</> : null}
+		{attributes.mobilePosition != '' && attributes.mobilePosition != 'static' && device == "Mobile" ? <>
+			<div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", columnGap: "20px" }}>
+				<UnitControl
+					label={__('Top', "flexsmith")}
+					placeholder={__('Top', "flexsmith")}
+					value={device == "Desktop" ? attributes.top : device == "Tablet" ? attributes.tabletTop : attributes.mobileTop}
+					onChange={(value) => {
+						if (device == "Desktop") {
+							setAttributes({ top: value })
+						} else if (device == "Tablet") {
+							setAttributes({ tabletTop: value })
+						} else {
+							setAttributes({ mobileTop: value })
+						}
+					}}
+					units={[
+						{ value: 'px', label: 'px', default: 0 },
+						{ value: 'em', label: 'em', default: 0 },
+						{ value: 'rem', label: 'rem', default: 0 },
+						{ value: '%', label: '%', default: 0 },
+						{ value: 'vh', label: 'vh', default: 0 },
+					]}
+				/>
+				<UnitControl
+					label={__('Right', "flexsmith")}
+					placeholder={__('Right', "flexsmith")}
+					value={device == "Desktop" ? attributes.right : device == "Tablet" ? attributes.tabletRight : attributes.mobileRight}
+					onChange={(value) => {
+						if (device == "Desktop") {
+							setAttributes({ right: value })
+						} else if (device == "Tablet") {
+							setAttributes({ tabletRight: value })
+						} else {
+							setAttributes({ mobileRight: value })
+						}
+					}}
+					units={[
+						{ value: 'px', label: 'px', default: 0 },
+						{ value: 'em', label: 'em', default: 0 },
+						{ value: 'rem', label: 'rem', default: 0 },
+						{ value: '%', label: '%', default: 0 },
+						{ value: 'vh', label: 'vh', default: 0 },
+					]}
+				/>
+				<UnitControl
+					label={__('Left', "flexsmith")}
+					placeholder={__('Left', "flexsmith")}
+					value={device == "Desktop" ? attributes.left : device == "Tablet" ? attributes.tabletLeft : attributes.mobileLeft}
+					onChange={(value) => {
+						if (device == "Desktop") {
+							setAttributes({ left: value })
+						} else if (device == "Tablet") {
+							setAttributes({ tabletLeft: value })
+						} else {
+							setAttributes({ mobileLeft: value })
+						}
+					}}
+					units={[
+						{ value: 'px', label: 'px', default: 0 },
+						{ value: 'em', label: 'em', default: 0 },
+						{ value: 'rem', label: 'rem', default: 0 },
+						{ value: '%', label: '%', default: 0 },
+						{ value: 'vh', label: 'vh', default: 0 },
+					]}
+				/>
+				<UnitControl
+					label={__('Bottom', "flexsmith")}
+					placeholder={__('Bottom', "flexsmith")}
+					value={device == "Desktop" ? attributes.bottom : device == "Tablet" ? attributes.tabletBottom : attributes.mobileBottom}
+					onChange={(value) => {
+						if (device == "Desktop") {
+							setAttributes({ bottom: value })
+						} else if (device == "Tablet") {
+							setAttributes({ tabletBottom: value })
+						} else {
+							setAttributes({ mobileBottom: value })
+						}
+					}}
+					units={[
+						{ value: 'px', label: 'px', default: 0 },
+						{ value: 'em', label: 'em', default: 0 },
+						{ value: 'rem', label: 'rem', default: 0 },
+						{ value: '%', label: '%', default: 0 },
+						{ value: 'vh', label: 'vh', default: 0 },
+					]}
+				/>
+			</div>
+		</> : null} */}
+		{/* {attributes.position != '' && attributes.position != 'static' ? <></> : null} */}
+	</>
+
+	// return <ToggleGroupControl label={__("Position", "flexsmith")}
+
+	// 	onChange={(value) => {
+	// 		if (device == "Desktop") {
+	// 			setAttributes({ position: value })
+	// 		} else if (device == "Tablet") {
+	// 			setAttributes({ tabletPosition: value })
+	// 		} else {
+	// 			setAttributes({ mobilePosition: value })
+	// 		}
+	// 	}}
+	// 	isBlock>
+	// 	<ToggleGroupControlOption
+	// 		value="none"
+	// 		label={__("None", "flexsmith")}
+	// 	/>
+	// 	<ToggleGroupControlOption
+	// 		value="flex"
+	// 		label={__("Flex", "flexsmith")}
+	// 	/>
+	// 	<ToggleGroupControlOption
+	// 		value="inline-flex"
+	// 		label={__("Inline Flex", "flexsmith")}
+	// 	/>
+	// </ToggleGroupControl>
+}
+const SettingPositions = ({ setAttributes, attributes, device }) => {
+	return <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", columnGap: "20px" }}>
+		<UnitControl
+			label={__('Top', "flexsmith")}
+			placeholder={__('Top', "flexsmith")}
+			value={device == "Desktop" ? attributes.top : device == "Tablet" ? attributes.tabletTop : attributes.mobileTop}
+			onChange={(value) => {
+				if (device == "Desktop") {
+					setAttributes({ top: value })
+				} else if (device == "Tablet") {
+					setAttributes({ tabletTop: value })
+				} else {
+					setAttributes({ mobileTop: value })
+				}
+			}}
+			units={[
+				{ value: 'px', label: 'px', default: 0 },
+				{ value: 'em', label: 'em', default: 0 },
+				{ value: 'rem', label: 'rem', default: 0 },
+				{ value: '%', label: '%', default: 0 },
+				{ value: 'vh', label: 'vh', default: 0 },
+			]}
+		/>
+		<UnitControl
+			label={__('Right', "flexsmith")}
+			placeholder={__('Right', "flexsmith")}
+			value={device == "Desktop" ? attributes.right : device == "Tablet" ? attributes.tabletRight : attributes.mobileRight}
+			onChange={(value) => {
+				if (device == "Desktop") {
+					setAttributes({ right: value })
+				} else if (device == "Tablet") {
+					setAttributes({ tabletRight: value })
+				} else {
+					setAttributes({ mobileRight: value })
+				}
+			}}
+			units={[
+				{ value: 'px', label: 'px', default: 0 },
+				{ value: 'em', label: 'em', default: 0 },
+				{ value: 'rem', label: 'rem', default: 0 },
+				{ value: '%', label: '%', default: 0 },
+				{ value: 'vh', label: 'vh', default: 0 },
+			]}
+		/>
+		<UnitControl
+			label={__('Left', "flexsmith")}
+			placeholder={__('Left', "flexsmith")}
+			value={device == "Desktop" ? attributes.left : device == "Tablet" ? attributes.tabletLeft : attributes.mobileLeft}
+			onChange={(value) => {
+				if (device == "Desktop") {
+					setAttributes({ left: value })
+				} else if (device == "Tablet") {
+					setAttributes({ tabletLeft: value })
+				} else {
+					setAttributes({ mobileLeft: value })
+				}
+			}}
+			units={[
+				{ value: 'px', label: 'px', default: 0 },
+				{ value: 'em', label: 'em', default: 0 },
+				{ value: 'rem', label: 'rem', default: 0 },
+				{ value: '%', label: '%', default: 0 },
+				{ value: 'vh', label: 'vh', default: 0 },
+			]}
+		/>
+		<UnitControl
+			label={__('Bottom', "flexsmith")}
+			placeholder={__('Bottom', "flexsmith")}
+			value={device == "Desktop" ? attributes.bottom : device == "Tablet" ? attributes.tabletBottom : attributes.mobileBottom}
+			onChange={(value) => {
+				if (device == "Desktop") {
+					setAttributes({ bottom: value })
+				} else if (device == "Tablet") {
+					setAttributes({ tabletBottom: value })
+				} else {
+					setAttributes({ mobileBottom: value })
+				}
+			}}
+			units={[
+				{ value: 'px', label: 'px', default: 0 },
+				{ value: 'em', label: 'em', default: 0 },
+				{ value: 'rem', label: 'rem', default: 0 },
+				{ value: '%', label: '%', default: 0 },
+				{ value: 'vh', label: 'vh', default: 0 },
+			]}
+		/>
+	</div>
 }

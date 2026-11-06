@@ -159,6 +159,66 @@
 		"mobileRowGap": {
 			"type": "string",
 			"default": ""
+		},
+		"position": {
+			"type": "string",
+			"default": ""
+		},
+		"mobilePosition": {
+			"type": "string",
+			"default": ""
+		},
+		"tabletPosition": {
+			"type": "string",
+			"default": ""
+		},
+		"top": {
+			"type": "string",
+			"default": ""
+		},
+		"mobileTop": {
+			"type": "string",
+			"default": ""
+		},
+		"tabletTop": {
+			"type": "string",
+			"default": ""
+		},
+		"bottom": {
+			"type": "string",
+			"default": ""
+		},
+		"mobileBottom": {
+			"type": "string",
+			"default": ""
+		},
+		"tabletBottom": {
+			"type": "string",
+			"default": ""
+		},
+		"left": {
+			"type": "string",
+			"default": ""
+		},
+		"mobileLeft": {
+			"type": "string",
+			"default": ""
+		},
+		"tabletLeft": {
+			"type": "string",
+			"default": ""
+		},
+		"right": {
+			"type": "string",
+			"default": ""
+		},
+		"mobileRight": {
+			"type": "string",
+			"default": ""
+		},
+		"tabletRight": {
+			"type": "string",
+			"default": ""
 		}
 	},
 	"textdomain": "flexsmith",

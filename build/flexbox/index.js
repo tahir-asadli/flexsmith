@@ -99,7 +99,11 @@ function Edit(props) {
     style: {
       width: (0,_lib__WEBPACK_IMPORTED_MODULE_4__.getWidth)(deviceType, props.attributes),
       columnGap: (0,_lib__WEBPACK_IMPORTED_MODULE_4__.getColumnGap)(deviceType, props.attributes),
-      rowGap: (0,_lib__WEBPACK_IMPORTED_MODULE_4__.getRowGap)(deviceType, props.attributes)
+      rowGap: (0,_lib__WEBPACK_IMPORTED_MODULE_4__.getRowGap)(deviceType, props.attributes),
+      top: (0,_lib__WEBPACK_IMPORTED_MODULE_4__.getTop)(deviceType, props.attributes),
+      right: (0,_lib__WEBPACK_IMPORTED_MODULE_4__.getRight)(deviceType, props.attributes),
+      bottom: (0,_lib__WEBPACK_IMPORTED_MODULE_4__.getBottom)(deviceType, props.attributes),
+      left: (0,_lib__WEBPACK_IMPORTED_MODULE_4__.getLeft)(deviceType, props.attributes)
     }
   });
   const innerBlocksProps = (0,_wordpress_block_editor__WEBPACK_IMPORTED_MODULE_1__.useInnerBlocksProps)(blockProps);
@@ -129,7 +133,11 @@ const DesktopSettings = ({
   attributes
 }) => {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(SettingDisplay, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(SettingPosition, {
+      setAttributes: setAttributes,
+      attributes: attributes,
+      device: "Desktop"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(SettingDisplay, {
       setAttributes: setAttributes,
       attributes: attributes,
       device: "Desktop"
@@ -177,7 +185,11 @@ const TabletSettings = ({
   attributes
 }) => {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(SettingDisplay, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(SettingPosition, {
+      setAttributes: setAttributes,
+      attributes: attributes,
+      device: "Tablet"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(SettingDisplay, {
       setAttributes: setAttributes,
       attributes: attributes,
       device: "Tablet"
@@ -225,7 +237,11 @@ const MobileSettings = ({
   attributes
 }) => {
   return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
-    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(SettingDisplay, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(SettingPosition, {
+      setAttributes: setAttributes,
+      attributes: attributes,
+      device: "Mobile"
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(SettingDisplay, {
       setAttributes: setAttributes,
       attributes: attributes,
       device: "Mobile"
@@ -708,6 +724,265 @@ const SettingRowGap = ({
     })
   });
 };
+const SettingPosition = ({
+  setAttributes,
+  attributes,
+  device
+}) => {
+  const options = [{
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Not set', 'flexsmith'),
+    value: ''
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Static', 'flexsmith'),
+    value: 'static'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Relative', 'flexsmith'),
+    value: 'relative'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Absolute', 'flexsmith'),
+    value: 'absolute'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Fixed', 'flexsmith'),
+    value: 'fixed'
+  }, {
+    label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Sticky', 'flexsmith'),
+    value: 'sticky'
+  }];
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)(react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.Fragment, {
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.SelectControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Position', 'flexsmith'),
+      value: device == "Desktop" ? attributes.position : device == "Tablet" ? attributes.tabletPosition : attributes.mobilePosition,
+      options: options,
+      onChange: value => {
+        if (device == "Desktop") {
+          setAttributes({
+            position: value
+          });
+        } else if (device == "Tablet") {
+          setAttributes({
+            tabletPosition: value
+          });
+        } else {
+          setAttributes({
+            mobilePosition: value
+          });
+        }
+      }
+    }), attributes.position != '' && attributes.position != 'static' && device == "Desktop" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(SettingPositions, {
+      setAttributes: setAttributes,
+      attributes: attributes,
+      device: "Desktop"
+    }) : null, attributes.tabletPosition != '' && attributes.tabletPosition != 'static' && device == "Tablet" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(SettingPositions, {
+      setAttributes: setAttributes,
+      attributes: attributes,
+      device: "Tablet"
+    }) : null, attributes.mobilePosition != '' && attributes.mobilePosition != 'static' && device == "Mobile" ? /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(SettingPositions, {
+      setAttributes: setAttributes,
+      attributes: attributes,
+      device: "Mobile"
+    }) : null]
+  });
+
+  // return <ToggleGroupControl label={__("Position", "flexsmith")}
+
+  // 	onChange={(value) => {
+  // 		if (device == "Desktop") {
+  // 			setAttributes({ position: value })
+  // 		} else if (device == "Tablet") {
+  // 			setAttributes({ tabletPosition: value })
+  // 		} else {
+  // 			setAttributes({ mobilePosition: value })
+  // 		}
+  // 	}}
+  // 	isBlock>
+  // 	<ToggleGroupControlOption
+  // 		value="none"
+  // 		label={__("None", "flexsmith")}
+  // 	/>
+  // 	<ToggleGroupControlOption
+  // 		value="flex"
+  // 		label={__("Flex", "flexsmith")}
+  // 	/>
+  // 	<ToggleGroupControlOption
+  // 		value="inline-flex"
+  // 		label={__("Inline Flex", "flexsmith")}
+  // 	/>
+  // </ToggleGroupControl>
+};
+const SettingPositions = ({
+  setAttributes,
+  attributes,
+  device
+}) => {
+  return /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsxs)("div", {
+    style: {
+      display: "grid",
+      gridTemplateColumns: "1fr 1fr",
+      columnGap: "20px"
+    },
+    children: [/*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalUnitControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Top', "flexsmith"),
+      placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Top', "flexsmith"),
+      value: device == "Desktop" ? attributes.top : device == "Tablet" ? attributes.tabletTop : attributes.mobileTop,
+      onChange: value => {
+        if (device == "Desktop") {
+          setAttributes({
+            top: value
+          });
+        } else if (device == "Tablet") {
+          setAttributes({
+            tabletTop: value
+          });
+        } else {
+          setAttributes({
+            mobileTop: value
+          });
+        }
+      },
+      units: [{
+        value: 'px',
+        label: 'px',
+        default: 0
+      }, {
+        value: 'em',
+        label: 'em',
+        default: 0
+      }, {
+        value: 'rem',
+        label: 'rem',
+        default: 0
+      }, {
+        value: '%',
+        label: '%',
+        default: 0
+      }, {
+        value: 'vh',
+        label: 'vh',
+        default: 0
+      }]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalUnitControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Right', "flexsmith"),
+      placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Right', "flexsmith"),
+      value: device == "Desktop" ? attributes.right : device == "Tablet" ? attributes.tabletRight : attributes.mobileRight,
+      onChange: value => {
+        if (device == "Desktop") {
+          setAttributes({
+            right: value
+          });
+        } else if (device == "Tablet") {
+          setAttributes({
+            tabletRight: value
+          });
+        } else {
+          setAttributes({
+            mobileRight: value
+          });
+        }
+      },
+      units: [{
+        value: 'px',
+        label: 'px',
+        default: 0
+      }, {
+        value: 'em',
+        label: 'em',
+        default: 0
+      }, {
+        value: 'rem',
+        label: 'rem',
+        default: 0
+      }, {
+        value: '%',
+        label: '%',
+        default: 0
+      }, {
+        value: 'vh',
+        label: 'vh',
+        default: 0
+      }]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalUnitControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Left', "flexsmith"),
+      placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Left', "flexsmith"),
+      value: device == "Desktop" ? attributes.left : device == "Tablet" ? attributes.tabletLeft : attributes.mobileLeft,
+      onChange: value => {
+        if (device == "Desktop") {
+          setAttributes({
+            left: value
+          });
+        } else if (device == "Tablet") {
+          setAttributes({
+            tabletLeft: value
+          });
+        } else {
+          setAttributes({
+            mobileLeft: value
+          });
+        }
+      },
+      units: [{
+        value: 'px',
+        label: 'px',
+        default: 0
+      }, {
+        value: 'em',
+        label: 'em',
+        default: 0
+      }, {
+        value: 'rem',
+        label: 'rem',
+        default: 0
+      }, {
+        value: '%',
+        label: '%',
+        default: 0
+      }, {
+        value: 'vh',
+        label: 'vh',
+        default: 0
+      }]
+    }), /*#__PURE__*/(0,react_jsx_runtime__WEBPACK_IMPORTED_MODULE_5__.jsx)(_wordpress_components__WEBPACK_IMPORTED_MODULE_3__.__experimentalUnitControl, {
+      label: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Bottom', "flexsmith"),
+      placeholder: (0,_wordpress_i18n__WEBPACK_IMPORTED_MODULE_0__.__)('Bottom', "flexsmith"),
+      value: device == "Desktop" ? attributes.bottom : device == "Tablet" ? attributes.tabletBottom : attributes.mobileBottom,
+      onChange: value => {
+        if (device == "Desktop") {
+          setAttributes({
+            bottom: value
+          });
+        } else if (device == "Tablet") {
+          setAttributes({
+            tabletBottom: value
+          });
+        } else {
+          setAttributes({
+            mobileBottom: value
+          });
+        }
+      },
+      units: [{
+        value: 'px',
+        label: 'px',
+        default: 0
+      }, {
+        value: 'em',
+        label: 'em',
+        default: 0
+      }, {
+        value: 'rem',
+        label: 'rem',
+        default: 0
+      }, {
+        value: '%',
+        label: '%',
+        default: 0
+      }, {
+        value: 'vh',
+        label: 'vh',
+        default: 0
+      }]
+    })]
+  });
+};
 
 /***/ },
 
@@ -819,8 +1094,12 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
 /* harmony export */   ICONS: () => (/* binding */ ICONS),
 /* harmony export */   classNames: () => (/* binding */ classNames),
+/* harmony export */   getBottom: () => (/* binding */ getBottom),
 /* harmony export */   getColumnGap: () => (/* binding */ getColumnGap),
+/* harmony export */   getLeft: () => (/* binding */ getLeft),
+/* harmony export */   getRight: () => (/* binding */ getRight),
 /* harmony export */   getRowGap: () => (/* binding */ getRowGap),
+/* harmony export */   getTop: () => (/* binding */ getTop),
 /* harmony export */   getWidth: () => (/* binding */ getWidth),
 /* harmony export */   useDeviceType: () => (/* binding */ useDeviceType)
 /* harmony export */ });
@@ -913,7 +1192,43 @@ const getRowGap = (deviceType, attributes) => {
     return attributes.mobileRowGap ? attributes.mobileRowGap : undefined;
   }
 };
-const CLASS_PROPS = [['justify', 'justifyContent'], ['align', 'alignItems'], ['direction', 'direction'], ['wrap', 'wrap'], ['display', 'display'], ['grow', 'grow'], ['shrink', 'shrink']];
+const getTop = (deviceType, attributes) => {
+  if (deviceType == "Desktop") {
+    return attributes.top ? attributes.top : undefined;
+  } else if (deviceType == "Tablet") {
+    return attributes.tabletTop ? attributes.tabletTop : undefined;
+  } else {
+    return attributes.mobileTop ? attributes.mobileTop : undefined;
+  }
+};
+const getRight = (deviceType, attributes) => {
+  if (deviceType == "Desktop") {
+    return attributes.right ? attributes.right : undefined;
+  } else if (deviceType == "Tablet") {
+    return attributes.tabletRight ? attributes.tabletRight : undefined;
+  } else {
+    return attributes.mobileRight ? attributes.mobileRight : undefined;
+  }
+};
+const getBottom = (deviceType, attributes) => {
+  if (deviceType == "Desktop") {
+    return attributes.bottom ? attributes.bottom : undefined;
+  } else if (deviceType == "Tablet") {
+    return attributes.tabletBottom ? attributes.tabletBottom : undefined;
+  } else {
+    return attributes.mobileBottom ? attributes.mobileBottom : undefined;
+  }
+};
+const getLeft = (deviceType, attributes) => {
+  if (deviceType == "Desktop") {
+    return attributes.left ? attributes.left : undefined;
+  } else if (deviceType == "Tablet") {
+    return attributes.tabletLeft ? attributes.tabletLeft : undefined;
+  } else {
+    return attributes.mobileLeft ? attributes.mobileLeft : undefined;
+  }
+};
+const CLASS_PROPS = [['justify', 'justifyContent'], ['align', 'alignItems'], ['direction', 'direction'], ['wrap', 'wrap'], ['display', 'display'], ['grow', 'grow'], ['shrink', 'shrink'], ['position', 'position']];
 const DEVICES = ['', 'tablet', 'mobile'];
 const classNames = attributes => {
   const classes = ['taufb'];
@@ -2232,7 +2547,7 @@ const toPascalCase = (string) => {
   \********************************/
 (module) {
 
-module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flexsmith/flexsmith","version":"0.1.0","title":"Flexsmith","category":"widgets","icon":"smiley","description":"Flexsmith is Gutenberg block designed to enhance the WordPress block editor.","example":{},"supports":{"html":false,"color":{"background":true,"text":true},"typography":{"fontSize":true,"lineHeight":true,"textAlign":true},"background":{"backgroundImage":true,"backgroundSize":true},"shadow":true,"align":["wide","full"],"spacing":{"margin":true,"padding":true},"__experimentalBorder":{"radius":true,"color":false,"width":false,"style":false}},"attributes":{"justifyContent":{"type":"string","default":""},"tabletJustifyContent":{"type":"string","default":""},"mobileJustifyContent":{"type":"string","default":""},"alignItems":{"type":"string","default":""},"tabletAlignItems":{"type":"string","default":""},"mobileAlignItems":{"type":"string","default":""},"direction":{"type":"string","default":""},"tabletDirection":{"type":"string","default":""},"mobileDirection":{"type":"string","default":""},"wrap":{"type":"string","default":""},"tabletWrap":{"type":"string","default":""},"mobileWrap":{"type":"string","default":""},"width":{"type":"string","default":""},"tabletWidth":{"type":"string","default":""},"mobileWidth":{"type":"string","default":""},"display":{"type":"string","default":""},"tabletDisplay":{"type":"string","default":""},"mobileDisplay":{"type":"string","default":""},"grow":{"type":"string","default":""},"tabletGrow":{"type":"string","default":""},"mobileGrow":{"type":"string","default":""},"shrink":{"type":"string","default":""},"tabletShrink":{"type":"string","default":""},"mobileShrink":{"type":"string","default":""},"columnGap":{"type":"string","default":""},"tabletColumnGap":{"type":"string","default":""},"mobileColumnGap":{"type":"string","default":""},"rowGap":{"type":"string","default":""},"tabletRowGap":{"type":"string","default":""},"mobileRowGap":{"type":"string","default":""}},"textdomain":"flexsmith","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
+module.exports = /*#__PURE__*/JSON.parse('{"$schema":"https://schemas.wp.org/trunk/block.json","apiVersion":3,"name":"flexsmith/flexsmith","version":"0.1.0","title":"Flexsmith","category":"widgets","icon":"smiley","description":"Flexsmith is Gutenberg block designed to enhance the WordPress block editor.","example":{},"supports":{"html":false,"color":{"background":true,"text":true},"typography":{"fontSize":true,"lineHeight":true,"textAlign":true},"background":{"backgroundImage":true,"backgroundSize":true},"shadow":true,"align":["wide","full"],"spacing":{"margin":true,"padding":true},"__experimentalBorder":{"radius":true,"color":false,"width":false,"style":false}},"attributes":{"justifyContent":{"type":"string","default":""},"tabletJustifyContent":{"type":"string","default":""},"mobileJustifyContent":{"type":"string","default":""},"alignItems":{"type":"string","default":""},"tabletAlignItems":{"type":"string","default":""},"mobileAlignItems":{"type":"string","default":""},"direction":{"type":"string","default":""},"tabletDirection":{"type":"string","default":""},"mobileDirection":{"type":"string","default":""},"wrap":{"type":"string","default":""},"tabletWrap":{"type":"string","default":""},"mobileWrap":{"type":"string","default":""},"width":{"type":"string","default":""},"tabletWidth":{"type":"string","default":""},"mobileWidth":{"type":"string","default":""},"display":{"type":"string","default":""},"tabletDisplay":{"type":"string","default":""},"mobileDisplay":{"type":"string","default":""},"grow":{"type":"string","default":""},"tabletGrow":{"type":"string","default":""},"mobileGrow":{"type":"string","default":""},"shrink":{"type":"string","default":""},"tabletShrink":{"type":"string","default":""},"mobileShrink":{"type":"string","default":""},"columnGap":{"type":"string","default":""},"tabletColumnGap":{"type":"string","default":""},"mobileColumnGap":{"type":"string","default":""},"rowGap":{"type":"string","default":""},"tabletRowGap":{"type":"string","default":""},"mobileRowGap":{"type":"string","default":""},"position":{"type":"string","default":""},"mobilePosition":{"type":"string","default":""},"tabletPosition":{"type":"string","default":""},"top":{"type":"string","default":""},"mobileTop":{"type":"string","default":""},"tabletTop":{"type":"string","default":""},"bottom":{"type":"string","default":""},"mobileBottom":{"type":"string","default":""},"tabletBottom":{"type":"string","default":""},"left":{"type":"string","default":""},"mobileLeft":{"type":"string","default":""},"tabletLeft":{"type":"string","default":""},"right":{"type":"string","default":""},"mobileRight":{"type":"string","default":""},"tabletRight":{"type":"string","default":""}},"textdomain":"flexsmith","editorScript":"file:./index.js","editorStyle":"file:./index.css","style":"file:./style-index.css","render":"file:./render.php"}');
 
 /***/ }
 

@@ -164,6 +164,66 @@ return array(
 			'mobileRowGap' => array(
 				'type' => 'string',
 				'default' => ''
+			),
+			'position' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'mobilePosition' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'tabletPosition' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'top' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'mobileTop' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'tabletTop' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'bottom' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'mobileBottom' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'tabletBottom' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'left' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'mobileLeft' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'tabletLeft' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'right' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'mobileRight' => array(
+				'type' => 'string',
+				'default' => ''
+			),
+			'tabletRight' => array(
+				'type' => 'string',
+				'default' => ''
 			)
 		),
 		'textdomain' => 'flexsmith',

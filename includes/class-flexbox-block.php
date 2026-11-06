@@ -27,12 +27,17 @@ final class Flexbox_Block
 		'display' => 'display',
 		'grow' => 'grow',
 		'shrink' => 'shrink',
+		'position' => 'position',
 	];
 
 	private const STYLE_PROPS = array(
 		'width' => 'width',
 		'columnGap' => 'column-gap',
 		'rowGap' => 'row-gap',
+		'top' => 'top',
+		'right' => 'right',
+		'bottom' => 'bottom',
+		'left' => 'left',
 	);
 
 	private const BREAKPOINTS = array(
@@ -90,15 +95,22 @@ final class Flexbox_Block
 
 	public function add_inline_styles()
 	{
+		$positions = ['top', 'right', 'bottom', 'left'];
 		$css = '';
 		foreach (self::BREAKPOINTS as $breakpoint => $media) {
 			$rules = '';
 
 			foreach (self::STYLE_PROPS as $name => $property) {
 				$key = $this->attribute_key($breakpoint, $name);
-
+				debug_log('key: ' . $key);
 				if (empty($this->attributes[$key])) {
 					continue;
+				}
+
+				if (in_array($key, $positions)) {
+					if ($this->attributes['position'] == '' || $this->attributes['position'] == 'static') {
+						continue;
+					}
 				}
 
 				$declaration = safecss_filter_attr($property . ':' . $this->attributes[$key]);
